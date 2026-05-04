@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RUST BALKAN | Strimerski Event</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Space+Grotesk:wght@300;500;700&display=swap');
+
+        :root {
+            --rust-color: #ce422b;
+            --metal-bg: #0f0f0f;
+            --accent: #f0ad4e;
+        }
+
+        body {
+            background-color: var(--metal-bg);
+            color: #d1d5db;
+            font-family: 'Space Grotesk', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0a0a0a; }
+        ::-webkit-scrollbar-thumb { background: var(--rust-color); border-radius: 4px; }
+
+        .font-marker { font-family: 'Permanent Marker', cursive; }
+
+        /* Background Effects */
+        .grid-overlay {
+            background-image: radial-gradient(circle at 2px 2px, rgba(206, 66, 43, 0.05) 1px, transparent 0);
+            background-size: 40px 40px;
+        }
+
+        .hero-section {
+            background: linear-gradient(to bottom, rgba(15,15,15,0.7), rgba(15,15,15,1)), 
+                        url('https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=2000');
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* Rust UI Elements */
+        .rust-border {
+            position: relative;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(20, 20, 20, 0.8);
+            clip-path: polygon(0 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%);
+        }
+
+        .rust-border::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 4px; height: 100%;
+            background: var(--rust-color);
+        }
+
+        .btn-action {
+            position: relative;
+            background: var(--rust-color);
+            color: white;
+            font-weight: 800;
+            padding: 1rem 2rem;
+            text-transform: uppercase;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: inline-block;
+            clip-path: polygon(10% 0, 100% 0, 90% 100%, 0 100%);
+        }
+
+        .btn-action:hover {
+            transform: scale(1.05) skewX(-5deg);
+            background: #ff4d30;
+            box-shadow: 0 0 25px rgba(206, 66, 43, 0.6);
+        }
+
+        .team-card {
+            background: linear-gradient(145deg, #1a1a1a, #121212);
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: all 0.4s ease;
+        }
+
+        .team-card:hover {
+            border-color: var(--rust-color);
+            background: #1e1e1e;
+        }
+
+        .scanline {
+            width: 100%;
+            height: 100px;
+            z-index: 10;
+            background: linear-gradient(0deg, rgba(0, 0, 0, 0) 0%, rgba(206, 66, 43, 0.05) 50%, rgba(0, 0, 0, 0) 100%);
+            opacity: 0.1;
+            position: absolute;
+            bottom: 100%;
+            animation: scanline 8s linear infinite;
+        }
+
+        @keyframes scanline {
+            0% { bottom: 100%; }
+            100% { bottom: -100%; }
+        }
+
+        .stat-box {
+            border-bottom: 2px solid rgba(255,255,255,0.1);
+        }
+    </style>
+</head>
+<body class="grid-overlay">
+
+    <div class="scanline"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-[100] px-6 py-4">
+        <div class="max-w-7xl mx-auto flex justify-between items-center bg-black/60 backdrop-blur-xl border border-white/10 p-4 rounded-2xl">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-red-600 rounded-lg flex items-center justify-center rotate-3 shadow-[0_0_15px_rgba(220,38,38,0.4)]">
+                    <i class="fa-solid fa-hammer text-white"></i>
+                </div>
+                <span class="text-2xl font-bold tracking-tighter text-white">RUST<span class="text-red-600">BALKAN</span></span>
+            </div>
+            
+            <div class="hidden md:flex items-center gap-8 font-medium text-sm uppercase tracking-widest">
+                <a href="#info" class="hover:text-red-500 transition">Info</a>
+                <a href="#timovi" class="hover:text-red-500 transition">Timovi</a>
+                <a href="#pravila" class="hover:text-red-500 transition">Pravila</a>
+                <a href="#tabela" class="bg-red-600/10 text-red-500 px-3 py-1 rounded border border-red-600/20">Live Rezultati</a>
+            </div>
+
+            <a href="#" class="bg-white text-black font-bold px-6 py-2 rounded-full text-sm hover:bg-red-600 hover:text-white transition-all">
+                PRIDRUŽI SE
+            </a>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero-section min-h-screen flex items-center relative overflow-hidden">
+        <div class="container mx-auto px-6 pt-20 grid lg:grid-cols-2 gap-12 items-center z-10">
+            <div>
+                <div class="flex items-center gap-2 mb-4">
+                    <span class="h-[2px] w-12 bg-red-600"></span>
+                    <span class="text-red-600 font-bold uppercase tracking-[0.3em] text-sm">Official Streamer Event</span>
+                </div>
+                <h1 class="text-7xl md:text-9xl font-bold mb-6 tracking-tighter leading-none text-white">
+                    7 DANA <br><span class="text-red-600 italic">GRINDA.</span>
+                </h1>
+                <p class="text-xl text-gray-400 mb-10 max-w-lg leading-relaxed">
+                    "20ak timova, svaki vodi strimer sa Balkana. Nema veze ako nisi igrao ikad, nauči osnove i uđi u borbu za titulu pobjednika."
+                </p>
+                <div class="flex flex-wrap gap-4">
+                    <a href="#timovi" class="btn-action">Lista Timova</a>
+                    <div class="flex items-center gap-4 px-6 text-gray-500 font-bold border-l border-white/10 ml-4">
+                        <div class="text-3xl text-white">20<span class="text-red-600">+</span></div>
+                        <div class="text-xs uppercase tracking-widest leading-tight">Potvrđenih<br>Strimera</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Hero Visual -->
+            <div class="relative hidden lg:block">
+                <div class="rust-border p-8 bg-zinc-900/50 backdrop-blur-sm">
+                    <div class="flex justify-between items-start mb-10">
+                        <div>
+                            <h3 class="text-3xl font-bold text-white mb-1">GLOBAL EVENT</h3>
+                            <p class="text-red-600 font-bold">STAVITE ME NA LISTU</p>
+                        </div>
+                        <i class="fa-solid fa-skull-crossbones text-5xl text-white/10"></i>
+                    </div>
+                    <div class="space-y-6">
+                        <div class="stat-box pb-4">
+                            <div class="flex justify-between text-xs mb-2">
+                                <span class="text-gray-500 uppercase">Pripreme za start</span>
+                                <span class="text-red-600">85%</span>
+                            </div>
+                            <div class="w-full h-1 bg-white/5">
+                                <div class="w-[85%] h-full bg-red-600 shadow-[0_0_10px_rgba(220,38,38,0.5)]"></div>
+                            </div>
+                        </div>
+                        <p class="text-sm text-gray-400 italic">"Server traje 7 dana, leaderboard se ažurira svakodnevno. Full grind, nije zajebancija."</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Info Section -->
+    <section id="info" class="py-32 bg-black/40">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-4 gap-1">
+                <div class="bg-zinc-900/40 p-8 border border-white/5 hover:bg-red-600/5 transition group">
+                    <i class="fa-solid fa-user-shield text-red-600 text-3xl mb-6 group-hover:scale-110 transition"></i>
+                    <h4 class="text-xl font-bold text-white mb-2 uppercase">1 Pro Igrac</h4>
+                    <p class="text-sm text-gray-500 leading-relaxed">Svaki tim od 4 člana ima jednog iskusnog igrača za balans.</p>
+                </div>
+                <div class="bg-zinc-900/40 p-8 border border-white/5 hover:bg-red-600/5 transition group">
+                    <i class="fa-solid fa-trophy text-red-600 text-3xl mb-6 group-hover:scale-110 transition"></i>
+                    <h4 class="text-xl font-bold text-white mb-2 uppercase">1 Winner</h4>
+                    <p class="text-sm text-gray-500 leading-relaxed">Samo jedan tim odnosi titulu šampiona Balkan eventa.</p>
+                </div>
+                <div class="bg-zinc-900/40 p-8 border border-white/5 hover:bg-red-600/5 transition group">
+                    <i class="fa-solid fa-bolt text-red-600 text-3xl mb-6 group-hover:scale-110 transition"></i>
+                    <h4 class="text-xl font-bold text-white mb-2 uppercase">Full Grind</h4>
+                    <p class="text-sm text-gray-500 leading-relaxed">Ovo nije običan server. Očekuje se maksimalna posvećenost.</p>
+                </div>
+                <div class="bg-zinc-900/40 p-8 border border-white/5 hover:bg-red-600/5 transition group">
+                    <i class="fa-solid fa-clock text-red-600 text-3xl mb-6 group-hover:scale-110 transition"></i>
+                    <h4 class="text-xl font-bold text-white mb-2 uppercase">7 Dana</h4>
+                    <p class="text-sm text-gray-500 leading-relaxed">Server se gasi nakon 7 dana intenzivne borbe i raida.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Teams Grid -->
+    <section id="timovi" class="py-32 relative">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+                <div>
+                    <h2 class="text-5xl font-bold text-white mb-2 tracking-tighter">POTVRĐENI <span class="text-red-600">KAPETANI</span></h2>
+                    <p class="text-gray-500 uppercase tracking-widest text-sm">Legendarna imena balkanske scene</p>
+                </div>
+                <div class="bg-zinc-900 px-6 py-3 rounded-full border border-white/10 text-sm font-bold">
+                    PREOSTALO MJESTA: <span class="text-red-600">04</span>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+                <!-- Team Card -->
+                <div class="team-card p-6 rounded-xl group relative overflow-hidden">
+                    <div class="absolute top-0 right-0 p-2 opacity-10 group-hover:opacity-100 transition">
+                        <i class="fa-solid fa-shield-halved text-red-600"></i>
+                    </div>
+                    <div class="w-16 h-16 bg-zinc-800 rounded-full mb-4 border-2 border-red-600 flex items-center justify-center font-bold text-2xl group-hover:bg-red-600 transition">N</div>
+                    <h3 class="font-bold text-white group-hover:text-red-600">NUNI</h3>
+                    <p class="text-[10px] text-gray-600 uppercase tracking-widest">Team #05</p>
+                </div>
+                <!-- Team Card -->
+                <div class="team-card p-6 rounded-xl group">
+                    <div class="w-16 h-16 bg-zinc-800 rounded-full mb-4 border-2 border-transparent group-hover:border-red-600 flex items-center justify-center font-bold text-2xl transition">G</div>
+                    <h3 class="font-bold text-white">GUH +</h3>
+                    <p class="text-[10px] text-gray-600 uppercase tracking-widest">Team #06</p>
+                </div>
+                <!-- Team Card -->
+                <div class="team-card p-6 rounded-xl group">
+                    <div class="w-16 h-16 bg-zinc-800 rounded-full mb-4 border-2 border-transparent group-hover:border-red-600 flex items-center justify-center font-bold text-2xl transition">NL</div>
+                    <h3 class="font-bold text-white">NOLIFER</h3>
+                    <p class="text-[10px] text-gray-500 uppercase tracking-widest">Team #07</p>
+                </div>
+                <!-- Team Card -->
+                <div class="team-card p-6 rounded-xl group">
+                    <div class="w-16 h-16 bg-zinc-800 rounded-full mb-4 border-2 border-transparent group-hover:border-red-600 flex items-center justify-center font-bold text-2xl transition">B</div>
+                    <h3 class="font-bold text-white">BAKA</h3>
+                    <p class="text-[10px] text-gray-500 uppercase tracking-widest">Team #08</p>
+                </div>
+                <!-- Team Card -->
+                <div class="team-card p-6 rounded-xl group border-dashed border-zinc-800 bg-transparent">
+                    <div class="w-16 h-16 bg-zinc-900 rounded-full mb-4 border-2 border-zinc-800 flex items-center justify-center font-bold text-2xl text-zinc-700">?</div>
+                    <h3 class="font-bold text-zinc-700">UPRAŽNJENO</h3>
+                    <p class="text-[10px] text-zinc-800 uppercase tracking-widest">Postani lider</p>
+                </div>
+                <!-- Dodati ostale: Genije, Wondery, Leksa+, Nugato+, Crni... -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Leaderboard -->
+    <section id="tabela" class="py-32 bg-[#080808]">
+        <div class="container mx-auto px-6">
+            <div class="bg-zinc-900/50 rounded-3xl border border-white/5 overflow-hidden shadow-2xl">
+                <div class="p-8 border-b border-white/5 flex flex-col md:flex-row justify-between gap-4">
+                    <h2 class="text-3xl font-bold text-white">LIVE <span class="text-red-600">POREDAK</span></h2>
+                    <div class="flex items-center gap-4">
+                        <div class="flex items-center gap-2 text-xs font-bold text-gray-500 uppercase">
+                            <span class="w-2 h-2 bg-red-600 rounded-full animate-ping"></span>
+                            Osvežavanje Bodova
+                        </div>
+                    </div>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left">
+                        <thead>
+                            <tr class="text-[10px] uppercase tracking-[0.2em] text-gray-500 border-b border-white/5">
+                                <th class="px-8 py-6">Poredak</th>
+                                <th class="px-8 py-6">Tim Kapetan</th>
+                                <th class="px-8 py-6 text-center">Grind Sati</th>
+                                <th class="px-8 py-6 text-right">Ukupno Bodova</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-white font-medium">
+                            <tr class="hover:bg-red-600/5 transition border-b border-white/5">
+                                <td class="px-8 py-8 font-marker text-2xl text-red-600">#01</td>
+                                <td class="px-8 py-8 flex items-center gap-4">
+                                    <div class="w-10 h-10 bg-red-600 rounded flex items-center justify-center font-bold">N</div>
+                                    <div>
+                                        <div class="font-bold">NUGATO +</div>
+                                        <div class="text-[10px] text-gray-500 uppercase tracking-widest">Team #12</div>
+                                    </div>
+                                </td>
+                                <td class="px-8 py-8 text-center text-gray-400">--</td>
+                                <td class="px-8 py-8 text-right font-bold text-xl tracking-tighter">0</td>
+                            </tr>
+                            <tr class="hover:bg-red-600/5 transition border-b border-white/5">
+                                <td class="px-8 py-8 font-marker text-2xl text-gray-600">#02</td>
+                                <td class="px-8 py-8 flex items-center gap-4">
+                                    <div class="w-10 h-10 bg-zinc-800 rounded flex items-center justify-center font-bold">L</div>
+                                    <div>
+                                        <div class="font-bold">LEKSA +</div>
+                                        <div class="text-[10px] text-gray-500 uppercase tracking-widest">Team #11</div>
+                                    </div>
+                                </td>
+                                <td class="px-8 py-8 text-center text-gray-400">--</td>
+                                <td class="px-8 py-8 text-right font-bold text-xl tracking-tighter">0</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-20 border-t border-white/5 relative">
+        <div class="container mx-auto px-6 text-center">
+            <div class="text-4xl font-bold mb-8">
+                RUST<span class="text-red-600">BALKAN</span>
+            </div>
+            <div class="flex justify-center gap-8 mb-12">
+                <a href="#" class="text-2xl hover:text-red-600 transition"><i class="fa-brands fa-discord"></i></a>
+                <a href="#" class="text-2xl hover:text-red-600 transition"><i class="fa-brands fa-twitch"></i></a>
+                <a href="#" class="text-2xl hover:text-red-600 transition"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#" class="text-2xl hover:text-red-600 transition"><i class="fa-brands fa-tiktok"></i></a>
+            </div>
+            <p class="text-gray-600 text-xs uppercase tracking-[0.4em] mb-4">Samo najjači opstaju</p>
+            <p class="text-gray-800 text-[10px]">&copy; 2024 RUST BALKAN STRIMER EVENT. NOT AN OFFICIAL FACEPUNCH PRODUCT.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
