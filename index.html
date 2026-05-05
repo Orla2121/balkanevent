@@ -1,350 +1,380 @@
 <!DOCTYPE html>
-<html lang="sr">
+<html lang="sr" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RUST BALKAN | OFFICIAL</title>
+    <title>RUST BALKAN | BALKAN SHOWDOWN</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Bangers&family=Space+Grotesk:wght@300;500;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Bangers&family=Space+Grotesk:wght@300;400;600;700&display=swap');
 
         :root {
-            --rust-red: #ce422b;
-            --rust-dark: #0f0f0f;
-            --rust-gray: #1a1a1a;
+            --rust-accent: #ff4d2a;
+            --rust-accent-hover: #e63e1c;
+            --bg-deep: #0a0a0a;
+            --bg-card: #141414;
+            --border-subtle: rgba(255, 255, 255, 0.08);
         }
 
         body {
-            background-color: var(--rust-dark);
-            color: #e5e7eb;
+            background-color: var(--bg-deep);
+            color: #d1d5db;
             font-family: 'Space Grotesk', sans-serif;
             overflow-x: hidden;
-            scroll-behavior: smooth;
         }
 
-        .font-rust { font-family: 'Bangers', system-ui; letter-spacing: 0.05em; }
+        .font-rust { font-family: 'Bangers', cursive; letter-spacing: 0.03em; }
 
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: #050505; }
-        ::-webkit-scrollbar-thumb { background: var(--rust-red); border-radius: 10px; }
-
-        .bg-grunge {
-            background-image: url('https://www.transparenttextures.com/patterns/carbon-fibre.png');
-            background-attachment: fixed;
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #080808; }
+        ::-webkit-scrollbar-thumb { 
+            background: linear-gradient(to bottom, var(--rust-accent), #8b0000); 
+            border-radius: 4px;
         }
 
-        .hero-overlay {
-            background: radial-gradient(circle at center, rgba(206, 66, 43, 0.15) 0%, transparent 70%);
+        /* Scanline Effect */
+        body::before {
+            content: " ";
+            display: block;
+            position: fixed;
+            top: 0; left: 0; bottom: 0; right: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), 
+                        linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
+            z-index: 9999;
+            background-size: 100% 4px, 3px 100%;
+            pointer-events: none;
+            opacity: 0.3;
         }
 
-        .nav-glass {
-            background: rgba(15, 15, 15, 0.8);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        .hero-gradient {
+            background: radial-gradient(circle at 50% 50%, rgba(255, 77, 42, 0.12) 0%, transparent 70%);
         }
 
-        .btn-rust {
-            background: var(--rust-red);
-            clip-path: polygon(5% 0%, 100% 0%, 95% 100%, 0% 100%);
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 0px #8a2a1b;
+        .nav-blur {
+            background: rgba(10, 10, 10, 0.75);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid var(--border-subtle);
         }
 
-        .btn-rust:hover {
+        .btn-industrial {
+            position: relative;
+            background: var(--rust-accent);
+            clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .btn-industrial:hover {
             transform: translateY(-2px);
-            filter: brightness(1.1);
-            box-shadow: 0 6px 0px #8a2a1b;
+            background: var(--rust-accent-hover);
+            box-shadow: 0 0 20px rgba(255, 77, 42, 0.3);
         }
 
-        .card-rust {
-            background: linear-gradient(180deg, #1f1f1f 0%, #141414 100%);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: all 0.4s ease;
-        }
-
-        .card-rust:hover { border-color: var(--rust-red); }
-
-        .live-pulse {
-            width: 8px; height: 8px;
-            background: #ef4444; border-radius: 50%;
-            display: inline-block; box-shadow: 0 0 8px #ef4444;
-            animation: pulse 1.5s infinite;
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(1); opacity: 1; }
-            50% { transform: scale(1.5); opacity: 0.5; }
-            100% { transform: scale(1); opacity: 1; }
-        }
-
-        .faq-content, .team-details {
-            max-height: 0;
+        .card-industrial {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            position: relative;
             overflow: hidden;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: border-color 0.3s ease;
         }
 
-        .active .faq-content, .active .team-details {
-            max-height: 500px;
-            margin-top: 1rem;
+        .card-industrial:hover {
+            border-color: rgba(255, 77, 42, 0.4);
+        }
+
+        .card-industrial::after {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 4px; height: 100%;
+            background: var(--rust-accent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .card-industrial:hover::after {
+            opacity: 1;
+        }
+
+        .status-pulse {
+            animation: pulse-ring 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+
+        @keyframes pulse-ring {
+            0% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.3); opacity: 0.4; }
+            100% { transform: scale(1); opacity: 0.8; }
+        }
+
+        .team-accordion {
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .team-row.active .team-accordion {
+            max-height: 800px;
+            opacity: 1;
+            margin-top: 1.5rem;
             padding-bottom: 1rem;
         }
 
-        .rotate-icon {
-            transition: transform 0.3s ease;
-        }
-        .active .rotate-icon {
-            transform: rotate(180deg);
+        .rotate-icon { transition: transform 0.4s ease; }
+        .team-row.active .rotate-icon { transform: rotate(180deg); }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease-out;
+            color: #9ca3af;
         }
 
-        .member-badge {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.05);
+        .faq-item.active .faq-answer {
+            max-height: 200px;
+            margin-top: 1rem;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(45deg);
+            color: var(--rust-accent);
         }
     </style>
 </head>
-<body class="bg-grunge">
+<body class="selection:bg-orange-500/30">
 
-    <!-- Navigacija -->
-    <nav class="fixed w-full z-[100] nav-glass px-6 py-4">
-        <div class="max-w-7xl mx-auto flex justify-between items-center">
-            <div class="flex items-center gap-3 cursor-pointer" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
-                <div class="w-10 h-10 bg-red-600 rounded flex items-center justify-center -rotate-6 shadow-lg">
-                    <i class="fa-solid fa-radiation text-white text-xl"></i>
+    <!-- Header Navigation -->
+    <nav class="fixed top-0 w-full z-[100] nav-blur transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
+            <div class="flex items-center gap-4 group cursor-pointer" onclick="window.scrollTo({top: 0})">
+                <div class="relative">
+                    <div class="w-10 h-10 bg-orange-600 rounded-lg flex items-center justify-center transform rotate-3 group-hover:rotate-12 transition-transform shadow-lg shadow-orange-900/20">
+                        <i class="fa-solid fa-radiation text-white text-xl"></i>
+                    </div>
                 </div>
-                <span class="text-2xl font-rust text-white uppercase tracking-wider">RUST<span class="text-red-600">BALKAN</span></span>
+                <div class="flex flex-col">
+                    <span class="text-2xl font-rust text-white leading-none uppercase tracking-tighter">RUST<span class="text-orange-600">BALKAN</span></span>
+                    <span class="text-[9px] uppercase tracking-[0.3em] text-gray-500 font-bold">Official Event</span>
+                </div>
             </div>
-            
-            <div class="hidden md:flex items-center gap-8 font-bold text-[11px] uppercase tracking-[0.2em] text-gray-400">
-                <a href="#pravila" class="hover:text-red-500 transition">Pravila</a>
-                <a href="#nagrade" class="hover:text-red-500 transition">Nagrade</a>
-                <a href="#tabela" class="hover:text-red-500 transition">Tabela</a>
-                <a href="#faq" class="hover:text-red-500 transition">FAQ</a>
-                <a href="#" class="flex items-center gap-2 text-white bg-red-600/20 px-4 py-2 rounded-lg border border-red-600/30 hover:bg-red-600/40 transition">
-                    <i class="fa-brands fa-discord"></i> Discord
+
+            <div class="hidden lg:flex items-center gap-10">
+                <div class="flex gap-8 text-[11px] font-bold uppercase tracking-widest text-gray-400">
+                    <a href="#pravila" class="hover:text-orange-500 transition-colors">Pravila</a>
+                    <a href="#nagrade" class="hover:text-orange-500 transition-colors">Nagrade</a>
+                    <a href="#tabela" class="hover:text-orange-500 transition-colors">Tabela</a>
+                    <a href="#faq" class="hover:text-orange-500 transition-colors">FAQ</a>
+                </div>
+                <a href="#" class="btn-industrial px-6 py-2.5 text-white font-bold text-xs uppercase tracking-widest flex items-center gap-2">
+                    <i class="fa-brands fa-discord text-lg"></i> Pridruži se
                 </a>
             </div>
+
+            <button class="lg:hidden text-white p-2" aria-label="Menu">
+                <i class="fa-solid fa-bars-staggered text-2xl"></i>
+            </button>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section class="relative min-h-screen flex flex-col items-center justify-center pt-20 overflow-hidden text-center">
-        <div class="absolute inset-0 hero-overlay"></div>
-        <div class="container mx-auto px-6 z-10">
-            <div class="mb-6 flex justify-center">
-                <div class="bg-yellow-500/10 border border-yellow-500/50 px-6 py-2 rounded-full flex items-center gap-3 shadow-[0_0_15px_rgba(234,179,8,0.1)]">
-                    <i class="fa-solid fa-trophy text-yellow-500 animate-bounce"></i>
-                    <span class="text-yellow-500 font-bold uppercase tracking-widest text-xs">Nagradni Fond: 500€</span>
-                </div>
+    <section class="relative min-h-screen flex items-center justify-center pt-20">
+        <div class="absolute inset-0 hero-gradient"></div>
+        <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-20"></div>
+        
+        <div class="container mx-auto px-6 z-10 text-center">
+            <div class="inline-flex items-center gap-3 px-4 py-2 bg-orange-600/10 border border-orange-600/30 rounded-full mb-8 backdrop-blur-sm">
+                <i class="fa-solid fa-bolt-lightning text-orange-500 animate-pulse"></i>
+                <span class="text-orange-500 font-bold uppercase tracking-[0.2em] text-[10px]">Borba za Preživljavanje</span>
             </div>
 
-            <h1 class="text-6xl md:text-9xl font-rust text-white mb-6 uppercase leading-none">
-                BALKAN <span class="text-red-600">SHOWDOWN</span>
+            <h1 class="text-7xl md:text-[10rem] font-rust text-white mb-4 leading-[0.8] uppercase select-none">
+                BALKAN<br><span class="text-orange-600 drop-shadow-[0_0_30px_rgba(234,88,12,0.3)]">SHOWDOWN</span>
             </h1>
             
-            <!-- Countdown Timer -->
-            <div class="flex justify-center gap-3 md:gap-6 mb-12">
-                <div class="p-4 rounded-xl card-rust min-w-[90px]">
-                    <div id="days" class="text-4xl font-rust text-white">00</div>
-                    <div class="text-[10px] text-gray-500 uppercase tracking-widest">Dana</div>
+            <p class="max-w-2xl mx-auto text-gray-400 text-lg md:text-xl mb-12 font-light tracking-wide">
+                Elitni regionalni turnir. <span class="text-white font-bold">7 dana</span> neprestane akcije, strateških odluka i borbe za prevlast na mapi.
+            </p>
+
+            <!-- Timer Grid -->
+            <div class="flex flex-wrap justify-center gap-4 md:gap-8 mb-16">
+                <div class="w-24 md:w-32 py-6 rounded-2xl bg-white/5 border border-white/5 backdrop-blur-md">
+                    <div id="days" class="text-4xl md:text-5xl font-rust text-white mb-1">07</div>
+                    <div class="text-[10px] text-gray-500 uppercase tracking-widest font-bold">Dana</div>
                 </div>
-                <div class="p-4 rounded-xl card-rust min-w-[90px]">
-                    <div id="hours" class="text-4xl font-rust text-white">00</div>
-                    <div class="text-[10px] text-gray-500 uppercase tracking-widest">Sati</div>
+                <div class="w-24 md:w-32 py-6 rounded-2xl bg-white/5 border border-white/5 backdrop-blur-md">
+                    <div id="hours" class="text-4xl md:text-5xl font-rust text-white mb-1">00</div>
+                    <div class="text-[10px] text-gray-500 uppercase tracking-widest font-bold">Sati</div>
                 </div>
-                <div class="p-4 rounded-xl card-rust min-w-[90px] border-red-600/30">
-                    <div id="minutes" class="text-4xl font-rust text-red-600">00</div>
-                    <div class="text-[10px] text-gray-500 uppercase tracking-widest">Minuta</div>
+                <div class="w-24 md:w-32 py-6 rounded-2xl bg-orange-600/10 border border-orange-600/30 backdrop-blur-md">
+                    <div id="minutes" class="text-4xl md:text-5xl font-rust text-orange-600 mb-1">00</div>
+                    <div class="text-[10px] text-gray-500 uppercase tracking-widest font-bold">Minuta</div>
                 </div>
             </div>
 
-            <div class="flex justify-center gap-4 flex-wrap">
-                <a href="#tabela" class="btn-rust px-12 py-5 text-white font-bold uppercase tracking-widest text-sm inline-flex items-center gap-3">
-                    Live Scoreboard
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#tabela" class="btn-industrial px-12 py-5 text-white font-bold uppercase tracking-[0.2em] text-sm">
+                    Rezultati Uživo
                 </a>
-                <a href="#mapa" class="bg-white/5 hover:bg-white/10 border border-white/10 px-8 py-5 text-white font-bold uppercase tracking-widest text-sm inline-flex items-center gap-3 rounded transition-all">
-                    Pogledaj Mapu
+                <a href="#nagrade" class="px-12 py-5 border border-white/10 hover:bg-white/5 rounded-sm transition-all text-white font-bold uppercase tracking-[0.2em] text-sm backdrop-blur-sm">
+                    Nagradni Fond
                 </a>
             </div>
         </div>
+
+        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4 text-gray-600">
+            <span class="text-[10px] uppercase tracking-[0.4em] font-bold">Saznaj više</span>
+            <div class="w-px h-12 bg-gradient-to-b from-gray-600 to-transparent"></div>
+        </div>
     </section>
 
-    <!-- Server Status Bar -->
-    <section id="status" class="py-10 bg-black/40 border-y border-white/5">
+    <!-- Stats Bar -->
+    <section class="py-12 bg-zinc-900/50 border-y border-white/5 backdrop-blur-md">
         <div class="container mx-auto px-6">
-            <div class="flex flex-wrap justify-center gap-8 md:gap-16 items-center text-center">
-                <div class="flex items-center gap-4">
-                    <div class="w-3 h-3 bg-green-500 rounded-full animate-pulse shadow-[0_0_10px_#22c55e]"></div>
-                    <div>
-                        <div class="text-[9px] text-gray-500 uppercase tracking-[0.2em]">Server</div>
-                        <div class="text-white font-bold uppercase text-xs">Online / Balkan-1</div>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <div class="flex flex-col items-center md:items-start">
+                    <div class="flex items-center gap-3 mb-2">
+                        <div class="w-2 h-2 bg-green-500 rounded-full status-pulse"></div>
+                        <span class="text-[10px] text-gray-500 uppercase font-bold tracking-widest">Status Servera</span>
                     </div>
+                    <span class="text-white font-bold text-lg">AKTIVAN <span class="text-gray-600 font-normal">/ EU-BALKAN</span></span>
                 </div>
-                <div class="flex items-center gap-4">
-                    <i class="fa-solid fa-users text-red-600"></i>
-                    <div>
-                        <div class="text-[9px] text-gray-500 uppercase tracking-[0.2em]">Igrači</div>
-                        <div class="text-white font-bold text-xs">158 / 200</div>
+                <div class="flex flex-col items-center md:items-start">
+                    <div class="flex items-center gap-3 mb-2">
+                        <i class="fa-solid fa-users text-orange-500 text-xs"></i>
+                        <span class="text-[10px] text-gray-500 uppercase font-bold tracking-widest">Timovi</span>
                     </div>
+                    <span class="text-white font-bold text-lg">24 <span class="text-gray-600 font-normal">/ 32</span></span>
                 </div>
-                <div class="flex items-center gap-4">
-                    <i class="fa-solid fa-moon text-blue-400"></i>
-                    <div>
-                        <div class="text-[9px] text-gray-500 uppercase tracking-[0.2em]">In-Game Vreme</div>
-                        <div class="text-white font-bold text-xs">Noć (02:15h)</div>
+                <div class="flex flex-col items-center md:items-start">
+                    <div class="flex items-center gap-3 mb-2">
+                        <i class="fa-solid fa-clock text-orange-500 text-xs"></i>
+                        <span class="text-[10px] text-gray-500 uppercase font-bold tracking-widest">Vreme na mapi</span>
                     </div>
+                    <span class="text-white font-bold text-lg">Dan <span class="text-gray-600 font-normal">(14:30h)</span></span>
+                </div>
+                <div class="flex flex-col items-center md:items-start">
+                    <div class="flex items-center gap-3 mb-2">
+                        <i class="fa-solid fa-calendar-check text-orange-500 text-xs"></i>
+                        <span class="text-[10px] text-gray-500 uppercase font-bold tracking-widest">Početak</span>
+                    </div>
+                    <span class="text-white font-bold text-lg">Četvrtak <span class="text-gray-600 font-normal">u 19:00h</span></span>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Rules Section -->
-    <section id="pravila" class="py-32">
-        <div class="container mx-auto px-6">
-            <h2 class="text-5xl font-rust text-white uppercase text-center mb-20 tracking-wider">PRAVILA <span class="text-red-600">EVENTA</span></h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <div class="card-rust p-8 rounded-2xl text-center">
-                    <i class="fa-solid fa-users-group text-4xl text-red-600 mb-6"></i>
-                    <h3 class="text-xl font-bold text-white uppercase mb-4 tracking-widest">Timovi</h3>
-                    <p class="text-gray-500 text-[11px] leading-relaxed uppercase font-bold">Maksimalno 8 igrača po timu. Alijanse nisu dozvoljene.</p>
-                </div>
-                <div class="card-rust p-8 rounded-2xl text-center">
-                    <i class="fa-solid fa-clock text-4xl text-red-600 mb-6"></i>
-                    <h3 class="text-xl font-bold text-white uppercase mb-4 tracking-widest">Trajanje</h3>
-                    <p class="text-gray-500 text-[11px] leading-relaxed uppercase font-bold">Event traje 48 sati. Raidovi samo u zakazano vreme.</p>
-                </div>
-                <div class="card-rust p-8 rounded-2xl text-center">
-                    <i class="fa-solid fa-shield-halved text-4xl text-red-600 mb-6"></i>
-                    <h3 class="text-xl font-bold text-white uppercase mb-4 tracking-widest">Zaštita</h3>
-                    <p class="text-gray-500 text-[11px] leading-relaxed uppercase font-bold">Prva 2 sata nakon wipe-a važi totalni PvP protection.</p>
-                </div>
-                <div class="card-rust p-8 rounded-2xl text-center">
-                    <i class="fa-solid fa-gun text-4xl text-red-600 mb-6"></i>
-                    <h3 class="text-xl font-bold text-white uppercase mb-4 tracking-widest">Anti-Cheat</h3>
-                    <p class="text-gray-500 text-[11px] leading-relaxed uppercase font-bold">Strogo zabranjen bilo kakav eksterni softver ili skripta.</p>
-                </div>
+    <section id="pravila" class="py-32 bg-zinc-950/30">
+        <div class="container mx-auto px-6 max-w-5xl">
+            <div class="text-center mb-16">
+                <h2 class="text-5xl font-rust text-white uppercase mb-4 tracking-wider">BALKAN <span class="text-orange-600">PRAVILA</span></h2>
+                <p class="text-gray-500 uppercase tracking-widest text-[10px] font-bold italic">Osnovni standardi za sve učesnike Showdown-a</p>
             </div>
-        </div>
-    </section>
-
-    <!-- Nagrade Section -->
-    <section id="nagrade" class="py-32 bg-black/40 border-y border-white/5">
-        <div class="container mx-auto px-6 text-center">
-            <h2 class="text-5xl font-rust text-white uppercase mb-20 tracking-wider">NAGRADNI <span class="text-red-600">FOND</span></h2>
-            <div class="flex flex-col md:flex-row justify-center items-end gap-6 max-w-5xl mx-auto">
-                <div class="w-full md:w-1/3 order-2 md:order-1">
-                    <div class="card-rust p-8 rounded-t-3xl border-t-4 border-t-zinc-400">
-                        <div class="text-zinc-400 text-6xl mb-4 font-rust italic">2nd</div>
-                        <div class="text-3xl font-rust text-white mb-2">150€</div>
-                        <div class="text-[10px] text-gray-500 uppercase tracking-[0.3em]">Drugoplasirani Tim</div>
+            
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="card-industrial p-8 rounded-xl">
+                    <div class="w-12 h-12 bg-orange-600/20 border border-orange-600/30 rounded flex items-center justify-center mb-6">
+                        <i class="fa-solid fa-user-group text-orange-500 text-xl"></i>
                     </div>
+                    <h3 class="text-white font-bold uppercase tracking-widest text-sm mb-4">Max 4 Igrača</h3>
+                    <p class="text-gray-500 text-xs leading-relaxed uppercase tracking-tighter">Limit tima je strogo 4 igrača. Nema rotacija usred turnira i nema saveza sa drugim klanovima.</p>
                 </div>
-                <div class="w-full md:w-1/3 order-1 md:order-2 transform md:scale-110 z-10">
-                    <div class="card-rust p-12 rounded-t-3xl border-t-4 border-t-yellow-500 shadow-[0_0_50px_rgba(234,179,8,0.1)]">
-                        <i class="fa-solid fa-crown text-5xl text-yellow-500 mb-4 animate-bounce"></i>
-                        <div class="text-yellow-500 text-8xl mb-4 font-rust italic leading-none">1st</div>
-                        <div class="text-5xl font-rust text-white mb-2">300€</div>
-                        <div class="text-[10px] text-gray-500 uppercase tracking-[0.3em] font-bold tracking-widest">Šampion Balkana</div>
+                <div class="card-industrial p-8 rounded-xl">
+                    <div class="w-12 h-12 bg-orange-600/20 border border-orange-600/30 rounded flex items-center justify-center mb-6">
+                        <i class="fa-solid fa-hourglass-half text-orange-500 text-xl"></i>
                     </div>
+                    <h3 class="text-white font-bold uppercase tracking-widest text-sm mb-4">7 Dana Trajanja</h3>
+                    <p class="text-gray-500 text-xs leading-relaxed uppercase tracking-tighter">Pobednik se proglašava nakon sedam dana borbe. Vaš skill, diplomatija i upornost su ključni.</p>
                 </div>
-                <div class="w-full md:w-1/3 order-3 md:order-3">
-                    <div class="card-rust p-8 rounded-t-3xl border-t-4 border-t-orange-800">
-                        <div class="text-orange-800 text-6xl mb-4 font-rust italic">3rd</div>
-                        <div class="text-3xl font-rust text-white mb-2">50€</div>
-                        <div class="text-[10px] text-gray-500 uppercase tracking-[0.3em]">Trećeplasirani Tim</div>
+                <div class="card-industrial p-8 rounded-xl">
+                    <div class="w-12 h-12 bg-orange-600/20 border border-orange-600/30 rounded flex items-center justify-center mb-6">
+                        <i class="fa-solid fa-gavel text-orange-500 text-xl"></i>
                     </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Map Section -->
-    <section id="mapa" class="py-32">
-        <div class="container mx-auto px-6 text-center">
-            <h2 class="text-5xl font-rust text-white uppercase mb-16 tracking-wider">MAPA <span class="text-red-600">SERVERA</span></h2>
-            <div class="max-w-4xl mx-auto rounded-3xl overflow-hidden border border-white/5 relative group">
-                <img src="https://files.facepunch.com/rust/screenshots/v2/map-preview.jpg" alt="Rust Map" class="w-full grayscale hover:grayscale-0 transition-all duration-700">
-                <div class="absolute inset-0 bg-black/40 group-hover:bg-transparent transition-all pointer-events-none"></div>
-                <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex gap-4 opacity-0 group-hover:opacity-100 transition-opacity">
-                    <button class="bg-red-600 text-white px-6 py-2 rounded-full font-bold uppercase text-[10px] tracking-widest">Download HQ</button>
+                    <h3 class="text-white font-bold uppercase tracking-widest text-sm mb-4">Nula Tolerancije</h3>
+                    <p class="text-gray-500 text-xs leading-relaxed uppercase tracking-tighter">Varanje, skripte ili bilo koji vid iskorišćavanja bagova donosi trenutnu diskvalifikaciju tima.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Leaderboard Section -->
-    <section id="tabela" class="py-32 bg-black/40">
+    <section id="tabela" class="py-32 bg-zinc-950/50 relative">
         <div class="container mx-auto px-6">
-            <div class="bg-zinc-900/30 rounded-3xl overflow-hidden border border-white/5 shadow-2xl">
-                <div class="p-8 border-b border-white/5 flex justify-between items-center">
-                    <h2 class="text-3xl font-rust text-white uppercase italic tracking-widest">LIVE <span class="text-red-600">POREDAK</span></h2>
-                    <div class="flex items-center gap-2 px-3 py-1 bg-red-600/10 rounded-full border border-red-600/30">
-                        <div class="live-pulse"></div>
-                        <span class="text-[9px] text-red-500 font-bold uppercase tracking-widest">Real-Time Updates</span>
-                    </div>
+            <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+                <div>
+                    <h2 class="text-5xl font-rust text-white uppercase tracking-wider mb-2">BALKAN <span class="text-orange-600">TABELA</span></h2>
+                    <p class="text-gray-500 text-xs uppercase tracking-widest font-bold">Trenutni poredak najboljih timova</p>
                 </div>
-                <div class="p-4">
-                    <div class="w-full space-y-4">
-                        <!-- Tabela Header -->
-                        <div class="hidden md:grid grid-cols-4 px-8 py-4 text-[10px] uppercase tracking-widest text-gray-500 border-b border-white/5">
-                            <div>Pozicija</div>
-                            <div>Tim / Članovi</div>
-                            <div>Status</div>
-                            <div class="text-right">Poeni</div>
-                        </div>
+                <div class="flex items-center gap-4 bg-white/5 border border-white/5 px-6 py-3 rounded-xl">
+                    <div class="w-3 h-3 bg-red-500 rounded-full animate-pulse shadow-[0_0_10px_rgba(239,68,68,0.5)]"></div>
+                    <span class="text-xs font-bold uppercase tracking-widest text-white">Pratimo vaš napredak</span>
+                </div>
+            </div>
 
-                        <!-- Team Row 1 -->
-                        <div class="group cursor-pointer" onclick="toggleTeam(this)">
-                            <div class="grid grid-cols-1 md:grid-cols-4 px-8 py-8 items-center bg-white/0 hover:bg-white/5 transition-all rounded-xl border border-transparent hover:border-red-600/20">
-                                <div class="font-rust text-3xl text-red-500 mb-2 md:mb-0">#1</div>
-                                <div class="flex items-center gap-3">
-                                    <span class="font-bold uppercase tracking-widest text-white">Nugato Team</span>
-                                    <i class="fa-solid fa-chevron-down text-gray-600 text-[10px] rotate-icon"></i>
-                                </div>
-                                <div class="mb-4 md:mb-0"><span class="bg-green-500/10 text-green-500 px-3 py-1 rounded-full text-[9px] font-bold uppercase">8 Online</span></div>
-                                <div class="text-right font-rust text-4xl text-white">15,420</div>
-                                
-                                <!-- Detalji Tima -->
-                                <div class="team-details col-span-1 md:col-span-4 mt-4 grid grid-cols-2 md:grid-cols-4 gap-4">
-                                    <div class="member-badge p-3 rounded-lg flex items-center gap-3">
-                                        <div class="w-8 h-8 bg-yellow-500/20 rounded flex items-center justify-center"><i class="fa-solid fa-crown text-yellow-500 text-xs"></i></div>
-                                        <div><div class="text-white text-[10px] font-bold">NUGATO</div><div class="text-[8px] text-gray-500 uppercase">Leader</div></div>
-                                    </div>
-                                    <div class="member-badge p-3 rounded-lg flex items-center gap-3">
-                                        <div class="w-8 h-8 bg-red-500/20 rounded flex items-center justify-center"><i class="fa-solid fa-crosshairs text-red-500 text-xs"></i></div>
-                                        <div><div class="text-white text-[10px] font-bold">SIMKE</div><div class="text-[8px] text-gray-500 uppercase">Fragger</div></div>
-                                    </div>
-                                    <div class="member-badge p-3 rounded-lg flex items-center gap-3">
-                                        <div class="w-8 h-8 bg-blue-500/20 rounded flex items-center justify-center"><i class="fa-solid fa-hammer text-blue-500 text-xs"></i></div>
-                                        <div><div class="text-white text-[10px] font-bold">BRKO</div><div class="text-[8px] text-gray-500 uppercase">Builder</div></div>
-                                    </div>
-                                    <div class="member-badge p-3 rounded-lg flex items-center gap-3">
-                                        <div class="w-8 h-8 bg-green-500/20 rounded flex items-center justify-center"><i class="fa-solid fa-wheat-awn text-green-500 text-xs"></i></div>
-                                        <div><div class="text-white text-[10px] font-bold">FARMER1</div><div class="text-[8px] text-gray-500 uppercase">Farmer</div></div>
+            <div class="space-y-4">
+                <div class="team-row group" onclick="toggleTeamDetails(this)">
+                    <div class="card-industrial p-6 md:p-8 rounded-xl cursor-pointer hover:bg-white/5 transition-colors">
+                        <div class="flex flex-wrap items-center justify-between gap-6">
+                            <div class="flex items-center gap-8">
+                                <span class="text-4xl font-rust text-orange-600">01</span>
+                                <div>
+                                    <h3 class="text-xl font-bold text-white uppercase tracking-wider group-hover:text-orange-500 transition-colors">Balkanske Zveri</h3>
+                                    <div class="flex items-center gap-4 mt-1">
+                                        <span class="text-[9px] font-bold text-green-500 uppercase tracking-tighter bg-green-500/10 px-2 py-0.5 rounded border border-green-500/20">4 Online</span>
+                                        <span class="text-[9px] font-bold text-gray-500 uppercase tracking-widest">Tag: [BZV]</span>
                                     </div>
                                 </div>
                             </div>
+                            
+                            <div class="flex items-center gap-12 ml-auto">
+                                <div class="hidden sm:flex flex-col items-end">
+                                    <span class="text-[10px] text-gray-600 uppercase font-bold tracking-widest">Raids</span>
+                                    <span class="text-white font-bold">5</span>
+                                </div>
+                                <div class="text-right">
+                                    <span class="text-[10px] text-orange-600 uppercase font-black tracking-widest block mb-1">Score</span>
+                                    <span class="text-4xl font-rust text-white">6,840</span>
+                                </div>
+                                <i class="fa-solid fa-chevron-down text-gray-700 rotate-icon"></i>
+                            </div>
                         </div>
 
-                        <!-- Team Row 2 -->
-                        <div class="group cursor-pointer" onclick="toggleTeam(this)">
-                            <div class="grid grid-cols-1 md:grid-cols-4 px-8 py-8 items-center bg-white/0 hover:bg-white/5 transition-all rounded-xl border border-transparent hover:border-red-600/20">
-                                <div class="font-rust text-3xl text-gray-500 mb-2 md:mb-0">#2</div>
-                                <div class="flex items-center gap-3">
-                                    <span class="font-bold uppercase tracking-widest text-white">Nuni Clan</span>
-                                    <i class="fa-solid fa-chevron-down text-gray-600 text-[10px] rotate-icon"></i>
-                                </div>
-                                <div class="mb-4 md:mb-0"><span class="bg-green-500/10 text-green-500 px-3 py-1 rounded-full text-[9px] font-bold uppercase">5 Online</span></div>
-                                <div class="text-right font-rust text-4xl text-gray-400">12,150</div>
-                                
-                                <div class="team-details col-span-1 md:col-span-4 mt-4 grid grid-cols-2 md:grid-cols-4 gap-4">
-                                    <div class="member-badge p-3 rounded-lg flex items-center gap-3">
-                                        <div class="w-8 h-8 bg-yellow-500/20 rounded flex items-center justify-center"><i class="fa-solid fa-crown text-yellow-500 text-xs"></i></div>
-                                        <div><div class="text-white text-[10px] font-bold">NUNI</div><div class="text-[8px] text-gray-500 uppercase">Leader</div></div>
+                        <div class="team-accordion border-t border-white/5">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-4">
+                                <div class="p-4 bg-white/5 rounded-lg flex items-center gap-4">
+                                    <div class="w-10 h-10 bg-orange-600/20 rounded flex items-center justify-center border border-orange-600/30">
+                                        <i class="fa-solid fa-user-shield text-orange-500"></i>
                                     </div>
-                                    <div class="member-badge p-3 rounded-lg flex items-center gap-3">
-                                        <div class="w-8 h-8 bg-red-500/20 rounded flex items-center justify-center"><i class="fa-solid fa-crosshairs text-red-500 text-xs"></i></div>
-                                        <div><div class="text-white text-[10px] font-bold">X-RAY</div><div class="text-[8px] text-gray-500 uppercase">Fragger</div></div>
+                                    <div>
+                                        <div class="text-xs font-bold text-white uppercase">Player1</div>
+                                        <div class="text-[8px] text-gray-600 uppercase font-bold tracking-widest italic">Leader</div>
+                                    </div>
+                                </div>
+                                <div class="p-4 bg-white/5 rounded-lg flex items-center gap-4">
+                                    <div class="w-10 h-10 bg-zinc-800 rounded flex items-center justify-center">
+                                        <i class="fa-solid fa-gun text-gray-500"></i>
+                                    </div>
+                                    <div>
+                                        <div class="text-xs font-bold text-white uppercase">Player2</div>
+                                        <div class="text-[8px] text-gray-600 uppercase font-bold tracking-widest">Fragger</div>
+                                    </div>
+                                </div>
+                                <div class="p-4 bg-white/5 rounded-lg flex items-center gap-4">
+                                    <div class="w-10 h-10 bg-zinc-800 rounded flex items-center justify-center">
+                                        <i class="fa-solid fa-hammer text-gray-500"></i>
+                                    </div>
+                                    <div>
+                                        <div class="text-xs font-bold text-white uppercase">Player3</div>
+                                        <div class="text-[8px] text-gray-600 uppercase font-bold tracking-widest">Builder</div>
+                                    </div>
+                                </div>
+                                <div class="p-4 bg-white/5 rounded-lg flex items-center gap-4">
+                                    <div class="w-10 h-10 bg-zinc-800 rounded flex items-center justify-center">
+                                        <i class="fa-solid fa-leaf text-gray-500"></i>
+                                    </div>
+                                    <div>
+                                        <div class="text-xs font-bold text-white uppercase">Player4</div>
+                                        <div class="text-[8px] text-gray-600 uppercase font-bold tracking-widest">Farmer</div>
                                     </div>
                                 </div>
                             </div>
@@ -357,34 +387,37 @@
 
     <!-- FAQ Section -->
     <section id="faq" class="py-32">
-        <div class="container mx-auto px-6 max-w-3xl">
-            <h2 class="text-4xl font-rust text-white uppercase text-center mb-16 tracking-wider">FAQ / <span class="text-red-600">PITANJA</span></h2>
-            <div class="space-y-4">
-                <div class="faq-item card-rust p-6 rounded-2xl cursor-pointer group hover:border-red-600/50 transition-all" onclick="toggleFaq(this)">
-                    <div class="flex justify-between items-center text-white font-bold uppercase text-[11px] tracking-widest">
-                        <span>Kada tačno počinje turnir?</span>
-                        <i class="fa-solid fa-plus text-red-600 transition-transform"></i>
+        <div class="container mx-auto px-6 max-w-4xl">
+            <h2 class="text-4xl font-rust text-white uppercase text-center mb-16 tracking-widest">BALKAN <span class="text-orange-600">PITANJA</span></h2>
+            
+            <div class="grid gap-4">
+                <div class="faq-item card-industrial p-6 rounded-xl cursor-pointer" onclick="toggleFaq(this)">
+                    <div class="flex justify-between items-center gap-4">
+                        <h4 class="text-sm font-bold uppercase tracking-widest text-white">Šta je Balkan Showdown?</h4>
+                        <i class="fa-solid fa-plus faq-icon transition-transform"></i>
                     </div>
-                    <div class="faq-content text-gray-500 text-[11px] leading-relaxed uppercase font-bold">
-                        Turnir počinje u subotu u 18:00h po našem vremenu. Server će biti otvoren 10 minuta ranije za učitavanje.
-                    </div>
-                </div>
-                <div class="faq-item card-rust p-6 rounded-2xl cursor-pointer group hover:border-red-600/50 transition-all" onclick="toggleFaq(this)">
-                    <div class="flex justify-between items-center text-white font-bold uppercase text-[11px] tracking-widest">
-                        <span>Da li je dozvoljen roof-camping?</span>
-                        <i class="fa-solid fa-plus text-red-600 transition-transform"></i>
-                    </div>
-                    <div class="faq-content text-gray-500 text-[11px] leading-relaxed uppercase font-bold">
-                        Dozvoljen je, ali u ograničenoj meri. Konstantno sedenje na krovu (preko 2 sata) može rezultirati upozorenjem od strane admina.
+                    <div class="faq-answer">
+                        <p class="text-sm leading-relaxed">Balkan Showdown je ultimativno Rust takmičenje dizajnirano za timove iz regiona, sa fokusom na fer igru i visok nivo kompeticije kroz sedmodnevni ciklus.</p>
                     </div>
                 </div>
-                <div class="faq-item card-rust p-6 rounded-2xl cursor-pointer group hover:border-red-600/50 transition-all" onclick="toggleFaq(this)">
-                    <div class="flex justify-between items-center text-white font-bold uppercase text-[11px] tracking-widest">
-                        <span>Kako se boduju raidovi?</span>
-                        <i class="fa-solid fa-plus text-red-600 transition-transform"></i>
+
+                <div class="faq-item card-industrial p-6 rounded-xl cursor-pointer" onclick="toggleFaq(this)">
+                    <div class="flex justify-between items-center gap-4">
+                        <h4 class="text-sm font-bold uppercase tracking-widest text-white">Zašto je limit 4 igrača?</h4>
+                        <i class="fa-solid fa-plus faq-icon transition-transform"></i>
                     </div>
-                    <div class="faq-content text-gray-500 text-[11px] leading-relaxed uppercase font-bold">
-                        Uspešan raid (uništenje TC-a) donosi 2000 poena. Svaki ubijeni protivnik tokom raida donosi dodatnih 50 poena.
+                    <div class="faq-answer">
+                        <p class="text-sm leading-relaxed">Limit od 4 igrača osigurava da se veština i koordinacija tima istaknu nad čistim brojem igrača (zergovanjem), čineći borbu pravednijom za sve.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item card-industrial p-6 rounded-xl cursor-pointer" onclick="toggleFaq(this)">
+                    <div class="flex justify-between items-center gap-4">
+                        <h4 class="text-sm font-bold uppercase tracking-widest text-white">Koliko dugo traje turnir?</h4>
+                        <i class="fa-solid fa-plus faq-icon transition-transform"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p class="text-sm leading-relaxed">Showdown traje tačno 7 dana. Kreće u četvrtak wipe-om u 19:00h i završava se sledećeg četvrtka u isto vreme.</p>
                     </div>
                 </div>
             </div>
@@ -392,36 +425,94 @@
     </section>
 
     <!-- Footer -->
-    <footer class="py-20 bg-zinc-950 text-center border-t border-white/5">
-        <div class="text-3xl font-rust text-white tracking-widest mb-6 uppercase">RUST<span class="text-red-600">BALKAN</span></div>
-        <p class="text-[10px] text-gray-600 uppercase tracking-[0.4em] mb-8">© 2026 Balkan Rust Showdown | Powered by Community</p>
-        <div class="flex justify-center gap-8 text-zinc-500 text-xl">
-            <i class="fa-brands fa-twitch hover:text-red-600 cursor-pointer"></i>
-            <i class="fa-brands fa-youtube hover:text-red-600 cursor-pointer"></i>
-            <i class="fa-brands fa-discord hover:text-red-600 cursor-pointer"></i>
+    <footer class="bg-zinc-950 border-t border-white/5 pt-20 pb-10">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col items-center text-center mb-16">
+                <div class="flex items-center gap-3 mb-8">
+                    <div class="w-8 h-8 bg-orange-600 rounded flex items-center justify-center">
+                        <i class="fa-solid fa-radiation text-white text-sm"></i>
+                    </div>
+                    <span class="text-2xl font-rust text-white uppercase tracking-widest">RUST<span class="text-orange-600">BALKAN</span></span>
+                </div>
+                <div class="flex gap-8 text-2xl text-gray-600 mb-10">
+                    <a href="#" class="hover:text-orange-600 transition-colors" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+                    <a href="#" class="hover:text-orange-600 transition-colors" aria-label="Twitch"><i class="fa-brands fa-twitch"></i></a>
+                    <a href="#" class="hover:text-orange-600 transition-colors" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                </div>
+                <p class="text-[10px] text-gray-700 uppercase tracking-[0.5em] font-bold">
+                    &copy; 2026 RUST BALKAN SHOWDOWN. SVA PRAVA ZADRŽANA.
+                </p>
+            </div>
         </div>
     </footer>
 
     <script>
-        // FAQ Toggle
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href !== "#") {
+                    e.preventDefault();
+                    const targetElement = document.querySelector(href);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
+                }
+            });
+        });
+
         function toggleFaq(element) {
+            const isActive = element.classList.contains('active');
+            document.querySelectorAll('.faq-item').forEach(item => item.classList.remove('active'));
+            if (!isActive) element.classList.add('active');
+        }
+
+        function toggleTeamDetails(element) {
             element.classList.toggle('active');
         }
 
-        // Team Details Toggle
-        function toggleTeam(element) {
-            element.classList.toggle('active');
-        }
+        const targetDate = new Date();
+        targetDate.setDate(targetDate.getDate() + 7); 
+        targetDate.setHours(19, 0, 0);
 
-        // Countdown
-        const targetDate = new Date(); targetDate.setDate(targetDate.getDate() + 5);
         function updateCountdown() {
-            const now = new Date().getTime(); const distance = targetDate - now;
-            document.getElementById("days").innerText = Math.floor(distance / (1000 * 60 * 60 * 24)).toString().padStart(2, '0');
-            document.getElementById("hours").innerText = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)).toString().padStart(2, '0');
-            document.getElementById("minutes").innerText = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)).toString().padStart(2, '0');
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+
+            const d = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const h = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const m = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+
+            const daysEl = document.getElementById("days");
+            const hoursEl = document.getElementById("hours");
+            const minsEl = document.getElementById("minutes");
+
+            if(daysEl) daysEl.innerText = d.toString().padStart(2, '0');
+            if(hoursEl) hoursEl.innerText = h.toString().padStart(2, '0');
+            if(minsEl) minsEl.innerText = m.toString().padStart(2, '0');
+
+            if (distance < 0) {
+                clearInterval(timerInterval);
+                if(daysEl) daysEl.innerText = "00";
+                if(hoursEl) hoursEl.innerText = "00";
+                if(minsEl) minsEl.innerText = "00";
+            }
         }
-        setInterval(updateCountdown, 1000); updateCountdown();
+
+        const timerInterval = setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('py-2', 'bg-zinc-950/90');
+                nav.classList.remove('h-20');
+            } else {
+                nav.classList.remove('py-2', 'bg-zinc-950/90');
+                nav.classList.add('h-20');
+            }
+        });
     </script>
 </body>
 </html>
