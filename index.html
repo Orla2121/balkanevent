@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RUST BALKAN | BALKAN SHOWDOWN</title>
+    <title>BALKAN RUST | SHOWDOWN</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Bangers&family=Space+Grotesk:wght@300;400;600;700&display=swap');
+        /* Dodat Poppins font */
+        @import url('https://fonts.googleapis.com/css2?family=Bangers&family=Poppins:wght@300;400;500;600;700;800&display=swap');
 
         :root {
             --rust-accent: #ff4d2a;
@@ -20,11 +21,15 @@
         body {
             background-color: var(--bg-deep);
             color: #d1d5db;
-            font-family: 'Space Grotesk', sans-serif;
+            /* Promenjen primarni font na Poppins */
+            font-family: 'Poppins', sans-serif;
             overflow-x: hidden;
         }
 
-        .font-rust { font-family: 'Bangers', cursive; letter-spacing: 0.03em; }
+        .font-rust { 
+            font-family: 'Bangers', cursive; 
+            letter-spacing: 0.03em; 
+        }
 
         /* Custom Scrollbar */
         ::-webkit-scrollbar { width: 8px; }
@@ -45,7 +50,7 @@
             z-index: 9999;
             background-size: 100% 4px, 3px 100%;
             pointer-events: none;
-            opacity: 0.3;
+            opacity: 0.15;
         }
 
         .hero-gradient {
@@ -68,7 +73,7 @@
         .btn-industrial:hover {
             transform: translateY(-2px);
             background: var(--rust-accent-hover);
-            box-shadow: 0 0 20px rgba(255, 77, 42, 0.3);
+            box-shadow: 0 0 25px rgba(255, 77, 42, 0.4);
         }
 
         .card-industrial {
@@ -76,11 +81,12 @@
             border: 1px solid var(--border-subtle);
             position: relative;
             overflow: hidden;
-            transition: border-color 0.3s ease;
+            transition: all 0.3s ease;
         }
 
         .card-industrial:hover {
             border-color: rgba(255, 77, 42, 0.4);
+            background: rgba(20, 20, 20, 0.8);
         }
 
         .card-industrial::after {
@@ -149,28 +155,28 @@
             <div class="flex items-center gap-4 group cursor-pointer" onclick="window.scrollTo({top: 0})">
                 <div class="relative">
                     <div class="w-10 h-10 bg-orange-600 rounded-lg flex items-center justify-center transform rotate-3 group-hover:rotate-12 transition-transform shadow-lg shadow-orange-900/20">
-                        <i class="fa-solid fa-radiation text-white text-xl"></i>
+                        <i class="fa-solid fa-skull-crossbones text-white text-xl"></i>
                     </div>
                 </div>
                 <div class="flex flex-col">
-                    <span class="text-2xl font-rust text-white leading-none uppercase tracking-tighter">Balkan<span class="text-orange-600">Rust</span></span>
-                    <span class="text-[9px] uppercase tracking-[0.3em] text-gray-500 font-bold">Official Event</span>
+                    <span class="text-2xl font-rust text-white leading-none uppercase tracking-tighter">BALKAN<span class="text-orange-600">RUST</span></span>
+                    <span class="text-[10px] uppercase font-semibold text-gray-500">Showdown Official</span>
                 </div>
             </div>
 
             <div class="hidden lg:flex items-center gap-10">
-                <div class="flex gap-8 text-[11px] font-bold uppercase tracking-widest text-gray-400">
+                <div class="flex gap-8 text-[12px] font-semibold uppercase tracking-wider text-gray-400">
                     <a href="#pravila" class="hover:text-orange-500 transition-colors">Pravila</a>
                     <a href="#nagrade" class="hover:text-orange-500 transition-colors">Nagrade</a>
                     <a href="#tabela" class="hover:text-orange-500 transition-colors">Tabela</a>
                     <a href="#faq" class="hover:text-orange-500 transition-colors">FAQ</a>
                 </div>
                 <a href="#" class="btn-industrial px-6 py-2.5 text-white font-bold text-xs uppercase tracking-widest flex items-center gap-2">
-                    <i class="fa-brands fa-discord text-lg"></i> Pridruži se
+                    <i class="fa-brands fa-discord text-lg"></i> Discord
                 </a>
             </div>
 
-            <button class="lg:hidden text-white p-2" aria-label="Menu">
+            <button class="lg:hidden text-white p-2">
                 <i class="fa-solid fa-bars-staggered text-2xl"></i>
             </button>
         </div>
@@ -182,47 +188,47 @@
         <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-20"></div>
         
         <div class="container mx-auto px-6 z-10 text-center">
-            <div class="inline-flex items-center gap-3 px-4 py-2 bg-orange-600/10 border border-orange-600/30 rounded-full mb-8 backdrop-blur-sm">
-                <i class="fa-solid fa-bolt-lightning text-orange-500 animate-pulse"></i>
-                <span class="text-orange-500 font-bold uppercase tracking-[0.2em] text-[10px]">Borba za Preživljavanje</span>
+            <div class="inline-flex items-center gap-3 px-5 py-2 bg-orange-600/10 border border-orange-600/30 rounded-full mb-8 backdrop-blur-sm">
+                <i class="fa-solid fa-fire text-orange-500 animate-bounce"></i>
+                <span class="text-orange-500 font-bold uppercase tracking-[0.2em] text-[10px]">Turnir Regionalnih Legendi</span>
             </div>
 
             <h1 class="text-7xl md:text-[10rem] font-rust text-white mb-4 leading-[0.8] uppercase select-none">
-                BALKAN<br><span class="text-orange-600 drop-shadow-[0_0_30px_rgba(234,88,12,0.3)]">SHOWDOWN</span>
+                BALKAN<br><span class="text-orange-600 drop-shadow-[0_0_35px_rgba(234,88,12,0.4)]">RUST</span>
             </h1>
             
-            <p class="max-w-2xl mx-auto text-gray-400 text-lg md:text-xl mb-12 font-light tracking-wide">
-                Elitni regionalni turnir. <span class="text-white font-bold">7 dana</span> neprestane akcije, strateških odluka i borbe za prevlast na mapi.
+            <p class="max-w-2xl mx-auto text-gray-400 text-lg md:text-xl mb-12 font-medium">
+                Dominacija počinje ovde. <span class="text-white font-bold">7 dana</span> totalnog rata na Balkanu. Formiraj tim od <span class="text-white font-bold">4 igrača</span> i pokaži ko vlada mapom.
             </p>
 
             <!-- Timer Grid -->
             <div class="flex flex-wrap justify-center gap-4 md:gap-8 mb-16">
-                <div class="w-24 md:w-32 py-6 rounded-2xl bg-white/5 border border-white/5 backdrop-blur-md">
+                <div class="w-24 md:w-32 py-6 rounded-2xl bg-white/5 border border-white/5 backdrop-blur-md hover:bg-white/10 transition-colors">
                     <div id="days" class="text-4xl md:text-5xl font-rust text-white mb-1">07</div>
-                    <div class="text-[10px] text-gray-500 uppercase tracking-widest font-bold">Dana</div>
+                    <div class="text-[10px] text-gray-500 uppercase font-bold tracking-widest">Dana</div>
                 </div>
-                <div class="w-24 md:w-32 py-6 rounded-2xl bg-white/5 border border-white/5 backdrop-blur-md">
+                <div class="w-24 md:w-32 py-6 rounded-2xl bg-white/5 border border-white/5 backdrop-blur-md hover:bg-white/10 transition-colors">
                     <div id="hours" class="text-4xl md:text-5xl font-rust text-white mb-1">00</div>
-                    <div class="text-[10px] text-gray-500 uppercase tracking-widest font-bold">Sati</div>
+                    <div class="text-[10px] text-gray-500 uppercase font-bold tracking-widest">Sati</div>
                 </div>
                 <div class="w-24 md:w-32 py-6 rounded-2xl bg-orange-600/10 border border-orange-600/30 backdrop-blur-md">
                     <div id="minutes" class="text-4xl md:text-5xl font-rust text-orange-600 mb-1">00</div>
-                    <div class="text-[10px] text-gray-500 uppercase tracking-widest font-bold">Minuta</div>
+                    <div class="text-[10px] text-gray-400 uppercase font-bold tracking-widest">Minuta</div>
                 </div>
             </div>
 
             <div class="flex flex-col sm:flex-row justify-center gap-4">
                 <a href="#tabela" class="btn-industrial px-12 py-5 text-white font-bold uppercase tracking-[0.2em] text-sm">
-                    Rezultati Uživo
+                    Scoreboard
                 </a>
-                <a href="#nagrade" class="px-12 py-5 border border-white/10 hover:bg-white/5 rounded-sm transition-all text-white font-bold uppercase tracking-[0.2em] text-sm backdrop-blur-sm">
-                    Nagradni Fond
+                <a href="#pravila" class="px-12 py-5 border border-white/10 hover:bg-white/5 rounded-sm transition-all text-white font-bold uppercase tracking-[0.2em] text-sm backdrop-blur-sm">
+                    Pravila
                 </a>
             </div>
         </div>
 
         <div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4 text-gray-600">
-            <span class="text-[10px] uppercase tracking-[0.4em] font-bold">Saznaj više</span>
+            <span class="text-[10px] uppercase font-bold tracking-widest">Skroluj dole</span>
             <div class="w-px h-12 bg-gradient-to-b from-gray-600 to-transparent"></div>
         </div>
     </section>
@@ -234,106 +240,106 @@
                 <div class="flex flex-col items-center md:items-start">
                     <div class="flex items-center gap-3 mb-2">
                         <div class="w-2 h-2 bg-green-500 rounded-full status-pulse"></div>
-                        <span class="text-[10px] text-gray-500 uppercase font-bold tracking-widest">Status Servera</span>
+                        <span class="text-[11px] text-gray-500 uppercase font-bold">Server Status</span>
                     </div>
-                    <span class="text-white font-bold text-lg">AKTIVAN <span class="text-gray-600 font-normal">/ EU-BALKAN</span></span>
+                    <span class="text-white font-bold text-lg">ONLINE <span class="text-gray-600 font-medium">/ EU</span></span>
                 </div>
                 <div class="flex flex-col items-center md:items-start">
                     <div class="flex items-center gap-3 mb-2">
                         <i class="fa-solid fa-users text-orange-500 text-xs"></i>
-                        <span class="text-[10px] text-gray-500 uppercase font-bold tracking-widest">Timovi</span>
+                        <span class="text-[11px] text-gray-500 uppercase font-bold">Prijave</span>
                     </div>
-                    <span class="text-white font-bold text-lg">24 <span class="text-gray-600 font-normal">/ 32</span></span>
+                    <span class="text-white font-bold text-lg">24 <span class="text-gray-600 font-medium">/ 32</span></span>
                 </div>
                 <div class="flex flex-col items-center md:items-start">
                     <div class="flex items-center gap-3 mb-2">
-                        <i class="fa-solid fa-clock text-orange-500 text-xs"></i>
-                        <span class="text-[10px] text-gray-500 uppercase font-bold tracking-widest">Vreme na mapi</span>
+                        <i class="fa-solid fa-shield-halved text-orange-500 text-xs"></i>
+                        <span class="text-[11px] text-gray-500 uppercase font-bold">Wipe Tip</span>
                     </div>
-                    <span class="text-white font-bold text-lg">Dan <span class="text-gray-600 font-normal">(14:30h)</span></span>
+                    <span class="text-white font-bold text-lg">FULL <span class="text-gray-600 font-medium">WIPE</span></span>
                 </div>
                 <div class="flex flex-col items-center md:items-start">
                     <div class="flex items-center gap-3 mb-2">
-                        <i class="fa-solid fa-calendar-check text-orange-500 text-xs"></i>
-                        <span class="text-[10px] text-gray-500 uppercase font-bold tracking-widest">Početak</span>
+                        <i class="fa-solid fa-calendar text-orange-500 text-xs"></i>
+                        <span class="text-[11px] text-gray-500 uppercase font-bold">Trajanje</span>
                     </div>
-                    <span class="text-white font-bold text-lg">Četvrtak <span class="text-gray-600 font-normal">u 19:00h</span></span>
+                    <span class="text-white font-bold text-lg">7 Dana <span class="text-gray-600 font-medium">Turnira</span></span>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Rules Section -->
+    <!-- Rules -->
     <section id="pravila" class="py-32 bg-zinc-950/30">
         <div class="container mx-auto px-6 max-w-5xl">
             <div class="text-center mb-16">
-                <h2 class="text-5xl font-rust text-white uppercase mb-4 tracking-wider">BALKAN <span class="text-orange-600">PRAVILA</span></h2>
-                <p class="text-gray-500 uppercase tracking-widest text-[10px] font-bold italic">Osnovni standardi za sve učesnike Showdown-a</p>
+                <h2 class="text-5xl font-rust text-white uppercase mb-4 tracking-wider">BALKAN RUST <span class="text-orange-600">KODEKS</span></h2>
+                <p class="text-gray-500 uppercase tracking-widest text-[11px] font-semibold italic">Poštena igra je jedini put do vrha</p>
             </div>
             
             <div class="grid md:grid-cols-3 gap-6">
                 <div class="card-industrial p-8 rounded-xl">
                     <div class="w-12 h-12 bg-orange-600/20 border border-orange-600/30 rounded flex items-center justify-center mb-6">
-                        <i class="fa-solid fa-user-group text-orange-500 text-xl"></i>
+                        <i class="fa-solid fa-users-viewfinder text-orange-500 text-xl"></i>
                     </div>
-                    <h3 class="text-white font-bold uppercase tracking-widest text-sm mb-4">Max 4 Igrača</h3>
-                    <p class="text-gray-500 text-xs leading-relaxed uppercase tracking-tighter">Limit tima je strogo 4 igrača. Nema rotacija usred turnira i nema saveza sa drugim klanovima.</p>
+                    <h3 class="text-white font-bold uppercase text-sm mb-4">Timski Limit (4)</h3>
+                    <p class="text-gray-400 text-xs leading-relaxed font-medium">Balkan Rust promoviše koordinaciju. Maksimalno 4 igrača po bazi/timu je obavezno pravilo koje se strogo nadgleda.</p>
                 </div>
                 <div class="card-industrial p-8 rounded-xl">
                     <div class="w-12 h-12 bg-orange-600/20 border border-orange-600/30 rounded flex items-center justify-center mb-6">
-                        <i class="fa-solid fa-hourglass-half text-orange-500 text-xl"></i>
+                        <i class="fa-solid fa-stopwatch text-orange-500 text-xl"></i>
                     </div>
-                    <h3 class="text-white font-bold uppercase tracking-widest text-sm mb-4">7 Dana Trajanja</h3>
-                    <p class="text-gray-500 text-xs leading-relaxed uppercase tracking-tighter">Pobednik se proglašava nakon sedam dana borbe. Vaš skill, diplomatija i upornost su ključni.</p>
+                    <h3 class="text-white font-bold uppercase text-sm mb-4">7 Dana Akcije</h3>
+                    <p class="text-gray-400 text-xs leading-relaxed font-medium">Jednonedeljni format garantuje intenzivnu igru gde se svaki sat proveden na serveru računa za konačni plasman.</p>
                 </div>
                 <div class="card-industrial p-8 rounded-xl">
                     <div class="w-12 h-12 bg-orange-600/20 border border-orange-600/30 rounded flex items-center justify-center mb-6">
-                        <i class="fa-solid fa-gavel text-orange-500 text-xl"></i>
+                        <i class="fa-solid fa-headset text-orange-500 text-xl"></i>
                     </div>
-                    <h3 class="text-white font-bold uppercase tracking-widest text-sm mb-4">Nula Tolerancije</h3>
-                    <p class="text-gray-500 text-xs leading-relaxed uppercase tracking-tighter">Varanje, skripte ili bilo koji vid iskorišćavanja bagova donosi trenutnu diskvalifikaciju tima.</p>
+                    <h3 class="text-white font-bold uppercase text-sm mb-4">Aktivna Podrška</h3>
+                    <p class="text-gray-400 text-xs leading-relaxed font-medium">Naši admini su tu da osiguraju stabilnost Balkan Rust turnira bez toksičnosti, rasizma i bilo kakvog vida varanja.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Leaderboard Section -->
+    <!-- Leaderboard -->
     <section id="tabela" class="py-32 bg-zinc-950/50 relative">
         <div class="container mx-auto px-6">
             <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
                 <div>
-                    <h2 class="text-5xl font-rust text-white uppercase tracking-wider mb-2">BALKAN <span class="text-orange-600">TABELA</span></h2>
-                    <p class="text-gray-500 text-xs uppercase tracking-widest font-bold">Trenutni poredak najboljih timova</p>
+                    <h2 class="text-5xl font-rust text-white uppercase tracking-wider mb-2">BALKAN <span class="text-orange-600">REJTING</span></h2>
+                    <p class="text-gray-500 text-xs uppercase font-bold tracking-widest">Ko dominira Balkan Rust scenom?</p>
                 </div>
                 <div class="flex items-center gap-4 bg-white/5 border border-white/5 px-6 py-3 rounded-xl">
                     <div class="w-3 h-3 bg-red-500 rounded-full animate-pulse shadow-[0_0_10px_rgba(239,68,68,0.5)]"></div>
-                    <span class="text-xs font-bold uppercase tracking-widest text-white">Pratimo vaš napredak</span>
+                    <span class="text-xs font-bold uppercase tracking-widest text-white">LIVE STATISTIKA</span>
                 </div>
             </div>
 
             <div class="space-y-4">
                 <div class="team-row group" onclick="toggleTeamDetails(this)">
-                    <div class="card-industrial p-6 md:p-8 rounded-xl cursor-pointer hover:bg-white/5 transition-colors">
+                    <div class="card-industrial p-6 md:p-8 rounded-xl cursor-pointer hover:bg-zinc-900/50 transition-colors">
                         <div class="flex flex-wrap items-center justify-between gap-6">
                             <div class="flex items-center gap-8">
                                 <span class="text-4xl font-rust text-orange-600">01</span>
                                 <div>
-                                    <h3 class="text-xl font-bold text-white uppercase tracking-wider group-hover:text-orange-500 transition-colors">Balkanske Zveri</h3>
+                                    <h3 class="text-xl font-bold text-white uppercase tracking-wider group-hover:text-orange-500 transition-colors">Surovi Balkan</h3>
                                     <div class="flex items-center gap-4 mt-1">
-                                        <span class="text-[9px] font-bold text-green-500 uppercase tracking-tighter bg-green-500/10 px-2 py-0.5 rounded border border-green-500/20">4 Online</span>
-                                        <span class="text-[9px] font-bold text-gray-500 uppercase tracking-widest">Tag: [BZV]</span>
+                                        <span class="text-[10px] font-bold text-green-500 uppercase tracking-tighter bg-green-500/10 px-2 py-0.5 rounded border border-green-500/20">4 Online</span>
+                                        <span class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Tag: [SRB]</span>
                                     </div>
                                 </div>
                             </div>
                             
                             <div class="flex items-center gap-12 ml-auto">
                                 <div class="hidden sm:flex flex-col items-end">
-                                    <span class="text-[10px] text-gray-600 uppercase font-bold tracking-widest">Raids</span>
-                                    <span class="text-white font-bold">5</span>
+                                    <span class="text-[11px] text-gray-600 uppercase font-bold">Pobede</span>
+                                    <span class="text-white font-bold">12</span>
                                 </div>
                                 <div class="text-right">
-                                    <span class="text-[10px] text-orange-600 uppercase font-black tracking-widest block mb-1">Score</span>
-                                    <span class="text-4xl font-rust text-white">6,840</span>
+                                    <span class="text-[11px] text-orange-600 uppercase font-extrabold block mb-1">Bodovi</span>
+                                    <span class="text-4xl font-rust text-white">8,920</span>
                                 </div>
                                 <i class="fa-solid fa-chevron-down text-gray-700 rotate-icon"></i>
                             </div>
@@ -341,40 +347,83 @@
 
                         <div class="team-accordion border-t border-white/5">
                             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-4">
-                                <div class="p-4 bg-white/5 rounded-lg flex items-center gap-4">
+                                <div class="p-4 bg-white/5 rounded-lg flex items-center gap-4 border border-white/5">
                                     <div class="w-10 h-10 bg-orange-600/20 rounded flex items-center justify-center border border-orange-600/30">
-                                        <i class="fa-solid fa-user-shield text-orange-500"></i>
+                                        <i class="fa-solid fa-crown text-orange-500"></i>
                                     </div>
                                     <div>
-                                        <div class="text-xs font-bold text-white uppercase">Player1</div>
-                                        <div class="text-[8px] text-gray-600 uppercase font-bold tracking-widest italic">Leader</div>
+                                        <div class="text-xs font-bold text-white uppercase">Kapetan</div>
+                                        <div class="text-[10px] text-gray-600 uppercase font-semibold italic">Leader</div>
                                     </div>
                                 </div>
-                                <div class="p-4 bg-white/5 rounded-lg flex items-center gap-4">
+                                <div class="p-4 bg-white/5 rounded-lg flex items-center gap-4 border border-white/5">
                                     <div class="w-10 h-10 bg-zinc-800 rounded flex items-center justify-center">
-                                        <i class="fa-solid fa-gun text-gray-500"></i>
+                                        <i class="fa-solid fa-crosshairs text-gray-500"></i>
                                     </div>
                                     <div>
-                                        <div class="text-xs font-bold text-white uppercase">Player2</div>
-                                        <div class="text-[8px] text-gray-600 uppercase font-bold tracking-widest">Fragger</div>
+                                        <div class="text-xs font-bold text-white uppercase">Nindža</div>
+                                        <div class="text-[10px] text-gray-600 uppercase font-semibold">Fragger</div>
                                     </div>
                                 </div>
-                                <div class="p-4 bg-white/5 rounded-lg flex items-center gap-4">
+                                <div class="p-4 bg-white/5 rounded-lg flex items-center gap-4 border border-white/5">
                                     <div class="w-10 h-10 bg-zinc-800 rounded flex items-center justify-center">
-                                        <i class="fa-solid fa-hammer text-gray-500"></i>
+                                        <i class="fa-solid fa-trowel-bricks text-gray-500"></i>
                                     </div>
                                     <div>
-                                        <div class="text-xs font-bold text-white uppercase">Player3</div>
-                                        <div class="text-[8px] text-gray-600 uppercase font-bold tracking-widest">Builder</div>
+                                        <div class="text-xs font-bold text-white uppercase">Majstor</div>
+                                        <div class="text-[10px] text-gray-600 uppercase font-semibold">Builder</div>
                                     </div>
                                 </div>
-                                <div class="p-4 bg-white/5 rounded-lg flex items-center gap-4">
+                                <div class="p-4 bg-white/5 rounded-lg flex items-center gap-4 border border-white/5">
                                     <div class="w-10 h-10 bg-zinc-800 rounded flex items-center justify-center">
-                                        <i class="fa-solid fa-leaf text-gray-500"></i>
+                                        <i class="fa-solid fa-wheat-awn text-gray-500"></i>
                                     </div>
                                     <div>
-                                        <div class="text-xs font-bold text-white uppercase">Player4</div>
-                                        <div class="text-[8px] text-gray-600 uppercase font-bold tracking-widest">Farmer</div>
+                                        <div class="text-xs font-bold text-white uppercase">Farmer</div>
+                                        <div class="text-[10px] text-gray-600 uppercase font-semibold">Resource</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Dodat još jedan primer -->
+                <div class="team-row group" onclick="toggleTeamDetails(this)">
+                    <div class="card-industrial p-6 md:p-8 rounded-xl cursor-pointer hover:bg-zinc-900/50 transition-colors">
+                        <div class="flex flex-wrap items-center justify-between gap-6">
+                            <div class="flex items-center gap-8">
+                                <span class="text-4xl font-rust text-gray-700">02</span>
+                                <div>
+                                    <h3 class="text-xl font-bold text-white uppercase tracking-wider group-hover:text-orange-500 transition-colors">Hrvatski Vukovi</h3>
+                                    <div class="flex items-center gap-4 mt-1">
+                                        <span class="text-[10px] font-bold text-gray-500 uppercase tracking-tighter bg-white/5 px-2 py-0.5 rounded border border-white/10">3 Online</span>
+                                        <span class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Tag: [VUK]</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center gap-12 ml-auto">
+                                <div class="hidden sm:flex flex-col items-end">
+                                    <span class="text-[11px] text-gray-600 uppercase font-bold">Pobede</span>
+                                    <span class="text-white font-bold">8</span>
+                                </div>
+                                <div class="text-right">
+                                    <span class="text-[11px] text-gray-600 uppercase font-extrabold block mb-1">Bodovi</span>
+                                    <span class="text-4xl font-rust text-white">7,150</span>
+                                </div>
+                                <i class="fa-solid fa-chevron-down text-gray-700 rotate-icon"></i>
+                            </div>
+                        </div>
+
+                        <div class="team-accordion border-t border-white/5">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-4">
+                                <div class="p-4 bg-white/5 rounded-lg flex items-center gap-4 border border-white/5">
+                                    <div class="w-10 h-10 bg-zinc-800 rounded flex items-center justify-center">
+                                        <i class="fa-solid fa-crown text-gray-500"></i>
+                                    </div>
+                                    <div>
+                                        <div class="text-xs font-bold text-white uppercase">Vuk_Kapetan</div>
+                                        <div class="text-[10px] text-gray-600 uppercase font-semibold italic">Leader</div>
                                     </div>
                                 </div>
                             </div>
@@ -385,39 +434,39 @@
         </div>
     </section>
 
-    <!-- FAQ Section -->
+    <!-- FAQ -->
     <section id="faq" class="py-32">
         <div class="container mx-auto px-6 max-w-4xl">
-            <h2 class="text-4xl font-rust text-white uppercase text-center mb-16 tracking-widest">BALKAN <span class="text-orange-600">PITANJA</span></h2>
+            <h2 class="text-4xl font-rust text-white uppercase text-center mb-16 tracking-widest">BALKAN RUST <span class="text-orange-600">INFO</span></h2>
             
             <div class="grid gap-4">
-                <div class="faq-item card-industrial p-6 rounded-xl cursor-pointer" onclick="toggleFaq(this)">
+                <div class="faq-item card-industrial p-6 rounded-xl cursor-pointer group" onclick="toggleFaq(this)">
                     <div class="flex justify-between items-center gap-4">
-                        <h4 class="text-sm font-bold uppercase tracking-widest text-white">Šta je Balkan Showdown?</h4>
+                        <h4 class="text-sm font-bold uppercase tracking-widest text-white group-hover:text-orange-500 transition-colors">Šta nudi Balkan Rust?</h4>
                         <i class="fa-solid fa-plus faq-icon transition-transform"></i>
                     </div>
                     <div class="faq-answer">
-                        <p class="text-sm leading-relaxed">Balkan Showdown je ultimativno Rust takmičenje dizajnirano za timove iz regiona, sa fokusom na fer igru i visok nivo kompeticije kroz sedmodnevni ciklus.</p>
+                        <p class="text-sm leading-relaxed font-medium">Nudimo visoko-kompetitivan ambijent za igrače sa Balkana uz fer pravila, niske latencije i redovne turnire sa vrednim nagradama i prestižnim titulama.</p>
                     </div>
                 </div>
 
-                <div class="faq-item card-industrial p-6 rounded-xl cursor-pointer" onclick="toggleFaq(this)">
+                <div class="faq-item card-industrial p-6 rounded-xl cursor-pointer group" onclick="toggleFaq(this)">
                     <div class="flex justify-between items-center gap-4">
-                        <h4 class="text-sm font-bold uppercase tracking-widest text-white">Zašto je limit 4 igrača?</h4>
+                        <h4 class="text-sm font-bold uppercase tracking-widest text-white group-hover:text-orange-500 transition-colors">Koliko traje Showdown faza?</h4>
                         <i class="fa-solid fa-plus faq-icon transition-transform"></i>
                     </div>
                     <div class="faq-answer">
-                        <p class="text-sm leading-relaxed">Limit od 4 igrača osigurava da se veština i koordinacija tima istaknu nad čistim brojem igrača (zergovanjem), čineći borbu pravednijom za sve.</p>
+                        <p class="text-sm leading-relaxed font-medium">Svaki zvanični Balkan Rust Showdown turnir traje tačno 7 dana. To je optimalno vreme da se pokaže ko je najbolje organizovan i najuporniji tim na mapi.</p>
                     </div>
                 </div>
 
-                <div class="faq-item card-industrial p-6 rounded-xl cursor-pointer" onclick="toggleFaq(this)">
+                <div class="faq-item card-industrial p-6 rounded-xl cursor-pointer group" onclick="toggleFaq(this)">
                     <div class="flex justify-between items-center gap-4">
-                        <h4 class="text-sm font-bold uppercase tracking-widest text-white">Koliko dugo traje turnir?</h4>
+                        <h4 class="text-sm font-bold uppercase tracking-widest text-white group-hover:text-orange-500 transition-colors">Mogu li igrati solo?</h4>
                         <i class="fa-solid fa-plus faq-icon transition-transform"></i>
                     </div>
                     <div class="faq-answer">
-                        <p class="text-sm leading-relaxed">Showdown traje tačno 7 dana. Kreće u četvrtak wipe-om u 19:00h i završava se sledećeg četvrtka u isto vreme.</p>
+                        <p class="text-sm leading-relaxed font-medium">Možete, ali imajte na umu da su timovi limitirani na 4 igrača. Solo igrači su uvek dobrodošli da testiraju svoj skill protiv manjih grupa, mada je preporuka naći barem jednog saveznika.</p>
                     </div>
                 </div>
             </div>
@@ -430,17 +479,16 @@
             <div class="flex flex-col items-center text-center mb-16">
                 <div class="flex items-center gap-3 mb-8">
                     <div class="w-8 h-8 bg-orange-600 rounded flex items-center justify-center">
-                        <i class="fa-solid fa-radiation text-white text-sm"></i>
+                        <i class="fa-solid fa-skull-crossbones text-white text-sm"></i>
                     </div>
-                    <span class="text-2xl font-rust text-white uppercase tracking-widest">RUST<span class="text-orange-600">BALKAN</span></span>
+                    <span class="text-2xl font-rust text-white uppercase tracking-widest">BALKAN<span class="text-orange-600">RUST</span></span>
                 </div>
                 <div class="flex gap-8 text-2xl text-gray-600 mb-10">
-                    <a href="#" class="hover:text-orange-600 transition-colors" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
-                    <a href="#" class="hover:text-orange-600 transition-colors" aria-label="Twitch"><i class="fa-brands fa-twitch"></i></a>
-                    <a href="#" class="hover:text-orange-600 transition-colors" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="#" class="hover:text-orange-600 transition-all hover:scale-110" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+                    <a href="#" class="hover:text-orange-600 transition-all hover:scale-110" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
                 </div>
-                <p class="text-[10px] text-gray-700 uppercase tracking-[0.5em] font-bold">
-                    &copy; 2026 RUST BALKAN SHOWDOWN. SVA PRAVA ZADRŽANA.
+                <p class="text-[11px] text-gray-600 uppercase font-bold tracking-[0.4em]">
+                    &copy; 2026 BALKAN RUST OFFICIAL. SVA PRAVA ZADRŽANA.
                 </p>
             </div>
         </div>
